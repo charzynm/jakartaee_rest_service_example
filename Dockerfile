@@ -1,10 +1,7 @@
-FROM mcr.microsoft.com/devcontainers/java:17
+FROM payara/server-full:6.2024.5-jdk17
 
 # Install wget if not already installed
 RUN apt-get update && apt-get install -y wget
-
-# Download Payara Micro
-RUN wget https://repo1.maven.org/maven2/fish/payara/distributions/payara-micro/6.2023.2/payara-micro-6.2023.2.jar -O /usr/local/bin/payara-micro.jar
 
 # Set the working directory
 WORKDIR /workspace
