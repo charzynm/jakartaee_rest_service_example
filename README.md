@@ -11,3 +11,6 @@ docker container ls
 docker stop <container-name>
 
 docker-compose up --build
+
+docker logs -f payara
+

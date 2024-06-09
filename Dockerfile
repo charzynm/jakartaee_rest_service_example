@@ -2,7 +2,7 @@
 FROM payara/server-full
 
 # Copy the WAR file to the deployments directory in Payara
-COPY jakartaee-rest/target/jakartaee-rest.war $PAYARA_DIR/deployments/
+COPY jakartaee-rest/target/jakartaee-rest.war /opt/payara/deployments/
 
 # Copy the post boot commands to configure the datasource
-COPY payara/post-boot-commands.asadmin $PAYARA_DIR/config/post-boot-commands.asadmin
+COPY jakartaee-rest/payara/post-boot-commands.asadmin /opt/payara/config/post-boot-commands.asadmin
