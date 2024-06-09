@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  payara:
+    image: payara/server-full
+    container_name: payara
+    ports:
+      - "8080:8080"
+      - "4848:4848"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_DB=books_db
+      - MYSQL_USER=yourUsername
+      - MYSQL_PASSWORD=yourPassword
+    volumes:
+      - ./jakartaee-rest/payara/deployments:/opt/payara/deployments
+      - ./jakartaee-rest/payara/post-boot-commands.asadmin:/opt/payara/config/post-boot-commands.asadmin:ro
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootPassword
+      MYSQL_DATABASE: books_db
+      MYSQL_USER: yourUsername
+      MYSQL_PASSWORD: yourPassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./jakartaee-rest/mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mysql-data:

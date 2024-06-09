@@ -9,3 +9,5 @@ docker run -p 8080:8080 my-image
 
 docker container ls
 docker stop <container-name>
+
+docker-compose up --build
