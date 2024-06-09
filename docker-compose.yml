@@ -27,6 +27,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./jakartaee-rest/mysql-init:/docker-entrypoint-initdb.d
+      - ./jakartaee-rest/mysql-init/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   mysql-data:

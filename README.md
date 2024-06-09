@@ -24,6 +24,15 @@ mysql -u yourUsername -pyourPassword -h localhost books_db
 -- get container id
 docker ps
 -- connect 
-docker exec -it c9a89a8c5912 mysql -u yourUsername -pyourPassword -h localhost books_db
+docker exec -it 552e6b4b5b0d mysql -u yourUsername -pyourPassword -h localhost books_db
+
+docker exec -it 552e6b4b5b0d ls /docker-entrypoint-initdb.d/
+docker exec -it 552e6b4b5b0d cat /docker-entrypoint-initdb.d/init.sql
+
+-- initialize manually
+docker exec -it 552e6b4b5b0d bash 
+mysql -u root -p < /docker-entrypoint-initdb.d/init.sql
 
 SHOW DATABASES;
+USE books_db;
+SHOW TABLES;
