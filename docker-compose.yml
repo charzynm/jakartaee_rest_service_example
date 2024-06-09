@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   payara:
-    image: payara/server-full
+    build: .
     container_name: payara
     ports:
       - "8080:8080"
@@ -11,9 +11,6 @@ services:
       - MYSQL_DB=books_db
       - MYSQL_USER=yourUsername
       - MYSQL_PASSWORD=yourPassword
-    volumes:
-      - ./jakartaee-rest/payara/deployments:/opt/payara/deployments
-      - ./jakartaee-rest/payara/post-boot-commands.asadmin:/opt/payara/config/post-boot-commands.asadmin:ro
     depends_on:
       - mysql
 
