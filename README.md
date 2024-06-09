@@ -14,3 +14,8 @@ docker-compose up --build
 
 docker logs -f payara
 
+# db
+sudo apt-get update
+sudo apt-get install mysql-client
+
+mysql -u yourUsername -p yourPassword -h mysql books_db
