@@ -36,3 +36,10 @@ mysql -u root -p < /docker-entrypoint-initdb.d/init.sql
 SHOW DATABASES;
 USE books_db;
 SHOW TABLES;
+
+# webapp - check domain.xml
+curl http://localhost:8080/jakartaee-rest
+docker exec -it 6d8a7fee67bf /bin/bash
+cd /opt/payara/appserver/glassfish/domains/domain1/config
+grep -A 10 -B 10 '<jdbc-connection-pool' domain.xml
+exit
