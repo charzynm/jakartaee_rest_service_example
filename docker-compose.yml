@@ -20,6 +20,8 @@ services:
       - my_network
     depends_on:
       - mysql
+    volumes:
+      - ./jakartaee-rest/payara/passwordFile:/opt/payara/passwordFile
 
   mysql:
     image: mysql:8.0
