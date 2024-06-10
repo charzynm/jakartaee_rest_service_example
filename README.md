@@ -39,7 +39,26 @@ SHOW TABLES;
 
 # webapp - check domain.xml
 curl http://localhost:8080/jakartaee-rest
+# jdbc
 docker exec -it 6d8a7fee67bf /bin/bash
 cd /opt/payara/appserver/glassfish/domains/domain1/config
 grep -A 10 -B 10 '<jdbc-connection-pool' domain.xml
+exit
+# app deployment
+docker exec -it 6d8a7fee67bf /bin/bash
+cd /opt/payara/appserver/glassfish/domains/domain1/config
+grep -A 10 -B 10 '<applications>' domain.xml
+exit
+# manual deployment
+docker exec -it 6d8a7fee67bf /bin/bash
+mkdir -p /opt/payara/applications
+exit
+docker cp ./jakartaee-rest/target/jakartaee-rest.war 6d8a7fee67bf:/opt/payara/applications/
+docker exec -it 6d8a7fee67bf /bin/bash
+/opt/payara/appserver/bin/asadmin deploy /opt/payara/applications/jakartaee-rest.war
+/opt/payara/appserver/bin/asadmin list-applications
+exit
+# server.log
+docker exec -it 6d8a7fee67bf /bin/bash
+cat /opt/payara/appserver/glassfish/domains/domain1/logs/server.log
 exit
