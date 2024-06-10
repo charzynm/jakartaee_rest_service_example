@@ -15,4 +15,4 @@ COPY ./jakartaee-rest/target/jakartaee-rest.war /opt/payara/deployments/
 COPY ./jakartaee-rest/payara/post-boot-commands.asadmin /opt/payara/config/post-boot-commands.asadmin
 
 # Ensure the post boot commands run on startup
-ENTRYPOINT ["/bin/sh", "-c", "/opt/payara/appserver/bin/asadmin start-domain && /opt/payara/appserver/bin/asadmin --user admin --passwordfile=/opt/payara/passwordFile multimode --file /opt/payara/config/post-boot-commands.asadmin && /opt/payara/appserver/bin/startInForeground.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "/opt/payara/appserver/bin/asadmin start-domain && /opt/payara/appserver/bin/asadmin --user admin --passwordfile=/opt/payara/passwordFile multimode --file /opt/payara/config/post-boot-commands.asadmin && /bin/sh /opt/payara/scripts/startInForeground.sh"]
