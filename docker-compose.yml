@@ -1,4 +1,9 @@
-version: '3.8'
+version: '3.9'
+
+networks:
+  my_network:
+    driver: bridge
+
 services:
   payara:
     build: .
@@ -11,6 +16,8 @@ services:
       - MYSQL_DB=books_db
       - MYSQL_USER=yourUsername
       - MYSQL_PASSWORD=yourPassword
+    networks:
+      - my_network
     depends_on:
       - mysql
 
@@ -22,12 +29,13 @@ services:
       MYSQL_DATABASE: books_db
       MYSQL_USER: yourUsername
       MYSQL_PASSWORD: yourPassword
+    networks:
+      - my_network      
     ports:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
       - ./jakartaee-rest/mysql-init:/docker-entrypoint-initdb.d
-      - ./jakartaee-rest/mysql-init/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   mysql-data:
